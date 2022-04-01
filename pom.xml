@@ -57,6 +57,10 @@
             <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.axonframework.extensions.reactor</groupId>
+            <artifactId>axon-reactor-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.axonframework.extensions.kotlin</groupId>
             <artifactId>axon-kotlin</artifactId>
         </dependency>

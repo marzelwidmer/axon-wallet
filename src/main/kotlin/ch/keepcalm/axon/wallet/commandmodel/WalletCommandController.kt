@@ -2,36 +2,31 @@ package ch.keepcalm.axon.wallet.commandmodel
 
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
-import org.axonframework.commandhandling.gateway.CommandGateway
 import org.springframework.web.bind.annotation.GetMapping
 import java.util.UUID
 import ch.keepcalm.axon.wallet.coreapi.CreateWalletCommand
-import org.axonframework.commandhandling.callbacks.LoggingCallback
 import ch.keepcalm.axon.wallet.coreapi.DepositCashCommand
-import ch.keepcalm.axon.wallet.coreapi.WithdrawCashCommand
+import kotlinx.coroutines.reactor.awaitSingleOrNull
+import org.axonframework.extensions.reactor.commandhandling.gateway.ReactorCommandGateway
+import org.springframework.hateoas.MediaTypes
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpStatus
+import org.springframework.http.ResponseEntity
 
 @RestController
 @RequestMapping("/command")
-class WalletCommandController(private val commandGateway: CommandGateway) {
+class WalletCommandController(private val commandGateway: ReactorCommandGateway) {
 
-    @GetMapping
-    fun createWallet() {
+    @GetMapping(value = ["/create"], produces = [MediaTypes.HAL_JSON_VALUE])
+    suspend fun createWallet() : HttpEntity<Any> {
         val walletId = UUID.randomUUID().toString()
-        commandGateway.send(CreateWalletCommand(walletId, 1000), LoggingCallback.INSTANCE)
+        commandGateway.send<Any>(CreateWalletCommand(walletId, 1000)).awaitSingleOrNull()
+        commandGateway.send<Any>(DepositCashCommand(walletId, 42)).awaitSingleOrNull()
+        commandGateway.send<Any>(DepositCashCommand(walletId, 42)).awaitSingleOrNull()
+//        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
+//        commandGateway.send(WithdrawCashCommand(walletId, 84), LoggingCallback.INSTANCE)
 
-        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
-        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
-
-
-        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
-        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
-        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
-        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
-        commandGateway.send(DepositCashCommand(walletId, 42), LoggingCallback.INSTANCE)
-
-        commandGateway.send(WithdrawCashCommand(walletId, 84), LoggingCallback.INSTANCE)
-
-    //        commandGateway.send(new WithdrawCashCommand(walletId, 1337), LoggingCallback.INSTANCE);
+        return ResponseEntity(HttpStatus.CREATED)
 
     }
 }
