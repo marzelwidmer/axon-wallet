@@ -1,18 +1,11 @@
 package ch.keepcalm.axon.wallet.commandmodel
 
-import org.axonframework.modelling.command.AggregateIdentifier
-import org.axonframework.commandhandling.CommandHandler
-import ch.keepcalm.axon.wallet.coreapi.CreateWalletCommand
-import org.axonframework.modelling.command.AggregateLifecycle
-import ch.keepcalm.axon.wallet.coreapi.WalletCreatedEvent
-import ch.keepcalm.axon.wallet.coreapi.DepositCashCommand
-import ch.keepcalm.axon.wallet.coreapi.CashDepositedEvent
-import kotlin.Throws
-import ch.keepcalm.axon.wallet.coreapi.NotEnoughFundsException
-import ch.keepcalm.axon.wallet.coreapi.WithdrawCashCommand
-import ch.keepcalm.axon.wallet.coreapi.CashWithdrawnEvent
+import ch.keepcalm.axon.wallet.coreapi.*
 import mu.KLogging
+import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
+import org.axonframework.modelling.command.AggregateIdentifier
+import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
 
 //@Aggregate
@@ -42,11 +35,11 @@ class WalletAggegate {
     fun handle(command: DepositCashCommand) {
         AggregateLifecycle.apply(CashDepositedEvent(walletId!!, command.amount))
     }
+
     @EventSourcingHandler
     fun on(event: CashDepositedEvent) {
         balance += event.amount
     }
-
 
 
     @CommandHandler
@@ -58,6 +51,7 @@ class WalletAggegate {
         }
         AggregateLifecycle.apply(CashWithdrawnEvent(walletId!!, amount))
     }
+
     @EventSourcingHandler
     fun on(event: CashWithdrawnEvent) {
         balance -= event.amount
