@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "axon.aggregate.snapshot-threshold",
+      "type": "java.lang.Integer",
+      "description": "Description for axon.aggregate.snapshot-threshold."
+    }
+  ] }

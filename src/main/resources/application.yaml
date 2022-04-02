@@ -1,3 +1,9 @@
 spring:
   application:
     name: wallet
+
+
+axon:
+  aggregate:
+    snapshot-threshold: 2
+

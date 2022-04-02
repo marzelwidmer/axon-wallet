@@ -5,7 +5,6 @@ import ch.keepcalm.axon.wallet.querymodel.WalletQueryController
 import kotlinx.coroutines.reactive.awaitSingle
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.MediaTypes
-import org.springframework.hateoas.config.EnableHypermediaSupport
 import org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo
 import org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn
 import org.springframework.hateoas.support.WebStack
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping
-@EnableHypermediaSupport(stacks = [WebStack.WEBFLUX], type = [EnableHypermediaSupport.HypermediaType.HAL])
 class IndexResource() {
 
     companion object REL {
