@@ -1,5 +1,9 @@
 package ch.keepcalm.axon.wallet.command
 
+import ch.keepcalm.axon.wallet.command.CreateWalletCommand
+import ch.keepcalm.axon.wallet.command.DepositCashCommand
+import ch.keepcalm.axon.wallet.command.NotEnoughFundsException
+import ch.keepcalm.axon.wallet.command.WithdrawCashCommand
 import ch.keepcalm.axon.wallet.common.*
 import mu.KLogging
 import org.axonframework.commandhandling.CommandHandler

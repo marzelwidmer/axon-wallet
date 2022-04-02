@@ -1,6 +1,7 @@
 package ch.keepcalm.axon.wallet.api
 
 import ch.keepcalm.axon.wallet.command.CreateWalletCommand
+import ch.keepcalm.axon.wallet.command.DepositCashCommand
 import ch.keepcalm.axon.wallet.command.WithdrawCashCommand
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
@@ -22,8 +23,7 @@ class WalletCommandController(private val commandGateway: ReactorCommandGateway)
         val walletId = UUID.randomUUID().toString()
         commandGateway.send<Any>(CreateWalletCommand(walletId, 1000)).awaitSingleOrNull()
         commandGateway.send<Any>(WithdrawCashCommand(walletId, 42)).awaitSingleOrNull()
-        commandGateway.send<Any>(WithdrawCashCommand(walletId, 42)).awaitSingleOrNull()
-//        commandGateway.send(DepositCashCommand(walletId, 84), LoggingCallback.INSTANCE)
+        commandGateway.send<Any>(DepositCashCommand(walletId, 42)).awaitSingleOrNull()
 
         return ResponseEntity(HttpStatus.CREATED)
 
