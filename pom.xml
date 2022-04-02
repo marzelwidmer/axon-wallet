@@ -40,9 +40,9 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
     <dependencies>
+
+        <!-- =================  Axon ================= -->
         <dependency>
             <groupId>org.axonframework</groupId>
             <artifactId>axon-spring-boot-starter</artifactId>
@@ -69,6 +69,13 @@
             <groupId>org.axonframework.extensions.mongo</groupId>
             <artifactId>axon-mongo</artifactId>
         </dependency>
+        <!--	AXON TEST	-->
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-test</artifactId>
+        </dependency>
+        <!-- =================  Axon ================= -->
+
 
 
         <!-- Logger -->
@@ -128,7 +135,7 @@
             <optional>true</optional>
         </dependency>
 
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-hateoas</artifactId>
