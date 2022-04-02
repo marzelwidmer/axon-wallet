@@ -10,7 +10,7 @@ import org.springframework.web.server.adapter.ForwardedHeaderTransformer
 
 @SpringBootApplication
 @EnableHypermediaSupport(stacks = [WebStack.WEBFLUX], type = [EnableHypermediaSupport.HypermediaType.HAL])
-@EnableConfigurationProperties(SnapshotThresholdConfigurer::class)
+@EnableConfigurationProperties(AxonSnapshotThresholdConfigurer::class)
 class WalletApplication {
 
     @Bean

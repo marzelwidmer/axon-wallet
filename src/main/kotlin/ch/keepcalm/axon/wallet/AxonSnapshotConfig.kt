@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Bean
 import org.springframework.stereotype.Component
 
 @Component
-class AxonSnapshotConfig (private val snapshotThresholdConfigurer: SnapshotThresholdConfigurer) {
+class AxonSnapshotConfig (private val axonSnapshotThresholdConfigurer: AxonSnapshotThresholdConfigurer) {
 
 
     @Bean
     fun mySnapshotTriggerDefinition(snapshotter: Snapshotter?): SnapshotTriggerDefinition {
-        return EventCountSnapshotTriggerDefinition(snapshotter, snapshotThresholdConfigurer.snapshotThreshold)
+        return EventCountSnapshotTriggerDefinition(snapshotter, axonSnapshotThresholdConfigurer.snapshotThreshold)
     }
 }

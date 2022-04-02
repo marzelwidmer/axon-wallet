@@ -21,7 +21,7 @@
         <spring-cloud.version>2021.0.1</spring-cloud.version>
         <axon.version>4.5.12</axon.version>
         <kotlin-logging-jvm.version>2.1.21</kotlin-logging-jvm.version>
-
+        <!-- Test -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
@@ -119,6 +119,10 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
@@ -140,7 +144,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+    <!-- =================  Build ================= -->
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
@@ -148,6 +152,14 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                            <goal>build-info</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -170,5 +182,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

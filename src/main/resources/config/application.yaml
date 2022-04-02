@@ -2,8 +2,6 @@ spring:
   application:
     name: wallet
 
-
 axon:
   aggregate:
-    snapshot-threshold: 2
-
+    snapshotThreshold: 2
