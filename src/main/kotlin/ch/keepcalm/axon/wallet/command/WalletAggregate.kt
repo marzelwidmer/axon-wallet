@@ -7,6 +7,7 @@ import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
+import java.util.UUID
 
 @Aggregate(snapshotTriggerDefinition = "mySnapshotTriggerDefinition")
 class WalletAggregate {
@@ -15,7 +16,6 @@ class WalletAggregate {
 
     @AggregateIdentifier
     private lateinit var walletId: String
-
     private var balance = 0
 
     constructor() {}
