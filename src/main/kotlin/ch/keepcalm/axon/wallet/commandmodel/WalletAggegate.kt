@@ -20,6 +20,7 @@ class WalletAggegate {
 
     constructor() {}
 
+
     @CommandHandler
     constructor(command: CreateWalletCommand) {
         AggregateLifecycle.apply(WalletCreatedEvent(command.walletId, command.balance))

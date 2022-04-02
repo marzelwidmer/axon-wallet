@@ -1,5 +1,6 @@
 package ch.keepcalm.axon.wallet.querymodel
 
+import ch.keepcalm.axon.wallet.coreapi.CashWithdrawnEvent
 import ch.keepcalm.axon.wallet.coreapi.FindAllWalletsQuery
 import ch.keepcalm.axon.wallet.coreapi.WalletCreatedEvent
 import org.axonframework.eventhandling.EventHandler
@@ -12,6 +13,16 @@ class WalletEventHandler(private val walletViewRepository: WalletViewRepository)
     @EventHandler
     fun on(event: WalletCreatedEvent) {
         walletViewRepository.save(WalletView(event.walletId, event.balance))
+    }
+
+
+    @EventHandler
+    fun handle(event: CashWithdrawnEvent){
+        val result = walletViewRepository.findById(event.walletId).get()
+        val balance = result.balance?.minus(event.amount)
+        walletViewRepository.save(
+            WalletView(walletId = event.walletId, balance= balance)
+        )
     }
 
     @QueryHandler
