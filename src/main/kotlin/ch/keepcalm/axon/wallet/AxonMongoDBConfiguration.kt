@@ -31,8 +31,8 @@ class AxonMongoDBConfiguration {
      */
     @Bean
     fun storageEngine(client: MongoClient?): EventStorageEngine = MongoEventStorageEngine.builder()
-        .eventSerializer(messageSerializer())
-        .snapshotSerializer(messageSerializer())
+        .eventSerializer(jacksonMessageSerializer())
+        .snapshotSerializer(jacksonMessageSerializer())
         .mongoTemplate(
             DefaultMongoTemplate
                 .builder()
