@@ -8,7 +8,6 @@ import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
 
-//@Aggregate
 @Aggregate(snapshotTriggerDefinition = "mySnapshotTriggerDefinition")
 class WalletAggegate {
 
@@ -31,9 +30,10 @@ class WalletAggegate {
         balance = event.balance
     }
 
+
     @CommandHandler
     fun handle(command: DepositCashCommand) {
-        AggregateLifecycle.apply(CashDepositedEvent(walletId!!, command.amount))
+        AggregateLifecycle.apply(CashDepositedEvent(walletId, command.amount))
     }
 
     @EventSourcingHandler
@@ -49,7 +49,7 @@ class WalletAggegate {
         if (balance - amount < 0) {
             throw NotEnoughFundsException()
         }
-        AggregateLifecycle.apply(CashWithdrawnEvent(walletId!!, amount))
+        AggregateLifecycle.apply(CashWithdrawnEvent(walletId, amount))
     }
 
     @EventSourcingHandler
