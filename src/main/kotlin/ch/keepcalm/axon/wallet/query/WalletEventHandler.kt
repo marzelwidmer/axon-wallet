@@ -1,8 +1,8 @@
-package ch.keepcalm.axon.wallet.querymodel
+package ch.keepcalm.axon.wallet.query
 
-import ch.keepcalm.axon.wallet.coreapi.CashWithdrawnEvent
-import ch.keepcalm.axon.wallet.coreapi.FindAllWalletsQuery
-import ch.keepcalm.axon.wallet.coreapi.WalletCreatedEvent
+import ch.keepcalm.axon.wallet.common.CashDepositedEvent
+import ch.keepcalm.axon.wallet.common.CashWithdrawnEvent
+import ch.keepcalm.axon.wallet.common.WalletCreatedEvent
 import org.axonframework.eventhandling.EventHandler
 import org.axonframework.queryhandling.QueryHandler
 import org.springframework.stereotype.Component
@@ -24,6 +24,18 @@ class WalletEventHandler(private val walletViewRepository: WalletViewRepository)
             WalletView(walletId = event.walletId, balance= balance)
         )
     }
+
+
+    @EventHandler
+    fun handle(event: CashDepositedEvent){
+        val result = walletViewRepository.findById(event.walletId).get()
+        val balance = result.balance?.plus(event.amount)
+        walletViewRepository.save(
+            WalletView(walletId = event.walletId, balance= balance)
+        )
+    }
+
+
 
     @QueryHandler
     fun answer(query: FindAllWalletsQuery?): List<WalletView> {

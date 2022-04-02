@@ -1,4 +1,4 @@
-package ch.keepcalm.axon.wallet
+package ch.keepcalm.axon.wallet.configuration
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding

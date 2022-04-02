@@ -1,13 +1,10 @@
-package ch.keepcalm.axon.wallet.hateoas
+package ch.keepcalm.axon.wallet.api
 
-import ch.keepcalm.axon.wallet.commandmodel.WalletCommandController
-import ch.keepcalm.axon.wallet.querymodel.WalletQueryController
 import kotlinx.coroutines.reactive.awaitSingle
 import org.springframework.hateoas.EntityModel
 import org.springframework.hateoas.MediaTypes
 import org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo
 import org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn
-import org.springframework.hateoas.support.WebStack
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController

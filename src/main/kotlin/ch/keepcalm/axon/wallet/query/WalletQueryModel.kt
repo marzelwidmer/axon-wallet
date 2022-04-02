@@ -1,8 +1,7 @@
-package ch.keepcalm.axon.wallet.querymodel
+package ch.keepcalm.axon.wallet.query
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
-import org.springframework.data.mongodb.repository.MongoRepository
 
 //import javax.persistence.Entity
 //import javax.persistence.Id

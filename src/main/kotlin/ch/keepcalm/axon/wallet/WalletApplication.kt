@@ -1,5 +1,6 @@
 package ch.keepcalm.axon.wallet;
 
+import ch.keepcalm.axon.wallet.configuration.AxonSnapshotThresholdConfigurer
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication

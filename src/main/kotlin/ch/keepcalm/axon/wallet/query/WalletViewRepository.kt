@@ -1,4 +1,4 @@
-package ch.keepcalm.axon.wallet.querymodel
+package ch.keepcalm.axon.wallet.query
 
 import org.springframework.data.mongodb.repository.MongoRepository
 

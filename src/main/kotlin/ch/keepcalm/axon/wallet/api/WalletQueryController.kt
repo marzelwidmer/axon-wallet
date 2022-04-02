@@ -1,7 +1,7 @@
-package ch.keepcalm.axon.wallet.querymodel
+package ch.keepcalm.axon.wallet.api
 
-import ch.keepcalm.axon.wallet.coreapi.FindAllWalletsQuery
-import ch.keepcalm.axon.wallet.hateoas.IndexResource
+import ch.keepcalm.axon.wallet.query.FindAllWalletsQuery
+import ch.keepcalm.axon.wallet.query.WalletView
 import kotlinx.coroutines.reactive.awaitSingle
 import org.axonframework.messaging.responsetypes.ResponseTypes
 import org.axonframework.queryhandling.QueryGateway

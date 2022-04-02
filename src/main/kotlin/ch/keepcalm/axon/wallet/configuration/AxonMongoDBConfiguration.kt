@@ -1,4 +1,4 @@
-package ch.keepcalm.axon.wallet
+package ch.keepcalm.axon.wallet.configuration
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature

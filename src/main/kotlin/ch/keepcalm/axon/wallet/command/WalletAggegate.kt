@@ -1,6 +1,6 @@
-package ch.keepcalm.axon.wallet.commandmodel
+package ch.keepcalm.axon.wallet.command
 
-import ch.keepcalm.axon.wallet.coreapi.*
+import ch.keepcalm.axon.wallet.common.*
 import mu.KLogging
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
