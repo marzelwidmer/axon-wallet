@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test all in Endpoints" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" path="$PROJECT_DIR$/etc/axon_wallet-endpoints.http"
+                 folderName="Test Wallet">
+    <method v="2" />
+  </configuration>
+</component>

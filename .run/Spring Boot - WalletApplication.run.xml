@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="WalletApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" folderName="Spring Boot">
+    <module name="axon-walltet" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="ch.keepcalm.axon.wallet.WalletApplication" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
