@@ -1,9 +1,5 @@
 package ch.keepcalm.axon.wallet.command
 
-import ch.keepcalm.axon.wallet.command.CreateWalletCommand
-import ch.keepcalm.axon.wallet.command.DepositCashCommand
-import ch.keepcalm.axon.wallet.command.NotEnoughFundsException
-import ch.keepcalm.axon.wallet.command.WithdrawCashCommand
 import ch.keepcalm.axon.wallet.common.*
 import mu.KLogging
 import org.axonframework.commandhandling.CommandHandler
@@ -13,7 +9,7 @@ import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
 
 @Aggregate(snapshotTriggerDefinition = "mySnapshotTriggerDefinition")
-class WalletAggegate {
+class WalletAggregate {
 
     companion object : KLogging()
 
