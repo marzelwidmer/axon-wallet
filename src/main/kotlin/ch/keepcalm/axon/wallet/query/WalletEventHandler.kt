@@ -12,7 +12,7 @@ class WalletEventHandler(private val walletViewRepository: WalletViewRepository)
 
     @EventHandler
     fun on(event: WalletCreatedEvent) {
-        walletViewRepository.save(WalletView(event.walletId, event.balance))
+        walletViewRepository.save(WalletView(event.walletId, event.balance, date = event.date))
     }
 
 
@@ -21,7 +21,7 @@ class WalletEventHandler(private val walletViewRepository: WalletViewRepository)
         val result = walletViewRepository.findById(event.walletId).get()
         val balance = result.balance?.minus(event.amount)
         walletViewRepository.save(
-            WalletView(walletId = event.walletId, balance= balance)
+            WalletView(walletId = event.walletId, balance= balance, date = event.date)
         )
     }
 
@@ -31,7 +31,7 @@ class WalletEventHandler(private val walletViewRepository: WalletViewRepository)
         val result = walletViewRepository.findById(event.walletId).get()
         val balance = result.balance?.plus(event.amount)
         walletViewRepository.save(
-            WalletView(walletId = event.walletId, balance= balance)
+            WalletView(walletId = event.walletId, balance= balance, date = event.date)
         )
     }
 

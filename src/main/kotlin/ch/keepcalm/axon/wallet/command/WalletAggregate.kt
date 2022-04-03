@@ -1,13 +1,14 @@
 package ch.keepcalm.axon.wallet.command
 
-import ch.keepcalm.axon.wallet.common.*
+import ch.keepcalm.axon.wallet.common.CashDepositedEvent
+import ch.keepcalm.axon.wallet.common.CashWithdrawnEvent
+import ch.keepcalm.axon.wallet.common.WalletCreatedEvent
 import mu.KLogging
 import org.axonframework.commandhandling.CommandHandler
 import org.axonframework.eventsourcing.EventSourcingHandler
 import org.axonframework.modelling.command.AggregateIdentifier
 import org.axonframework.modelling.command.AggregateLifecycle
 import org.axonframework.spring.stereotype.Aggregate
-import java.util.UUID
 
 @Aggregate(snapshotTriggerDefinition = "mySnapshotTriggerDefinition")
 class WalletAggregate {
@@ -23,8 +24,9 @@ class WalletAggregate {
 
     @CommandHandler
     constructor(command: CreateWalletCommand) {
-        AggregateLifecycle.apply(WalletCreatedEvent(command.walletId, command.balance))
+        AggregateLifecycle.apply(WalletCreatedEvent(command.walletId, command.balance, date = command.date))
     }
+
     @EventSourcingHandler
     fun on(event: WalletCreatedEvent) {
         walletId = event.walletId
@@ -34,7 +36,7 @@ class WalletAggregate {
 
     @CommandHandler
     fun handle(command: DepositCashCommand) {
-        AggregateLifecycle.apply(CashDepositedEvent(walletId, command.amount))
+        AggregateLifecycle.apply(CashDepositedEvent(walletId, command.amount, date = command.date))
     }
 
     @EventSourcingHandler
@@ -50,7 +52,7 @@ class WalletAggregate {
         if (balance - amount < 0) {
             throw NotEnoughFundsException()
         }
-        AggregateLifecycle.apply(CashWithdrawnEvent(walletId, amount))
+        AggregateLifecycle.apply(CashWithdrawnEvent(walletId = walletId, amount = amount, date = command.date))
     }
 
     @EventSourcingHandler
