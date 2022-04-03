@@ -24,14 +24,12 @@ import org.springframework.stereotype.Component
 @Component
 class AxonMongoDBConfiguration {
 
-
-
     /**
      * Create a Mongo based Event Storage Engine.
      */
     @Bean
     fun storageEngine(client: MongoClient?): EventStorageEngine = MongoEventStorageEngine.builder()
-        .eventSerializer(messageSerializer())
+        .eventSerializer(jacksonMessageSerializer())
         .snapshotSerializer(messageSerializer())
         .mongoTemplate(
             DefaultMongoTemplate
